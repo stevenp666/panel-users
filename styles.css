@@ -6,12 +6,11 @@
 }
 
 :root {
-    /* Color Palette - Tonos suaves y marrones */
-    --primary-color: #8B6F47;
-    --primary-light: #A0665C;
-    --primary-dark: #6B4E3D;
-    --secondary-color: #D4B08A;
-    --accent-color: #C7956D;
+  --primary-color: #A88C7D;        /* Marrón suave, elegante y confiable */
+  --primary-light: #D6C4B2;        /* Beige claro, ideal para fondos o tarjetas */
+  --primary-dark: #5C4433;         /* Marrón profundo para textos o encabezados */
+  --secondary-color: #C8A28F;      /* Complemento armónico, elegante y sobrio */
+  --accent-color: #BFA38A;         /* Toque decorativo en botones o detalles */
     
     /* Neutral Colors */
     --background-color: #FDFCFB;
