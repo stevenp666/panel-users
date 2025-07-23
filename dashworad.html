@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Force - Panel de Usuario</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="logo">
+                <i class="fas fa-balance-scale"></i>
+                <span>Legal Force</span>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="notifications">
+                <button class="notification-btn" id="notificationBtn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="notification-dropdown" id="notificationDropdown">
+                    <div class="notification-header">
+                        <h3>Notificaciones</h3>
+                        <button class="mark-all-read">Marcar todas como leídas</button>
+                    </div>
+                    <div class="notification-list">
+                        <div class="notification-item unread">
+                            <i class="fas fa-calendar-check text-success"></i>
+                            <div class="notification-content">
+                                <p>Cita confirmada para mañana a las 10:00 AM</p>
+                                <span>Hace 2 horas</span>
+                            </div>
+                        </div>
+                        <div class="notification-item unread">
+                            <i class="fas fa-file-alt text-info"></i>
+                            <div class="notification-content">
+                                <p>Nuevo documento disponible en su caso</p>
+                                <span>Hace 4 horas</span>
+                            </div>
+                        </div>
+                        <div class="notification-item unread">
+                            <i class="fas fa-credit-card text-warning"></i>
+                            <div class="notification-content">
+                                <p>Factura generada - Caso #2024-001</p>
+                                <span>Hace 1 día</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="user-menu">
+                <button class="user-btn" id="userBtn">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23A0665C'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Usuario" class="user-avatar">
+                    <span>María González</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="user-dropdown" id="userDropdown">
+                    <a href="#" onclick="showSection('profile')"><i class="fas fa-user"></i> Mi Perfil</a>
+                    <a href="#" onclick="showSection('settings')"><i class="fas fa-cog"></i> Configuración</a>
+                    <a href="#"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <nav class="sidebar-nav">
+                <ul class="nav-menu">
+                    <li class="nav-item active">
+                        <a href="#" onclick="showSection('dashboard')" class="nav-link">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" onclick="showSection('appointments')" class="nav-link">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Citas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" onclick="showSection('history')" class="nav-link">
+                            <i class="fas fa-history"></i>
+                            <span>Historial</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" onclick="showSection('consultations')" class="nav-link">
+                            <i class="fas fa-comments"></i>
+                            <span>Consultas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" onclick="showSection('documents')" class="nav-link">
+                            <i class="fas fa-folder-open"></i>
+                            <span>Documentos</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" onclick="showSection('billing')" class="nav-link">
+                            <i class="fas fa-receipt"></i>
+                            <span>Facturación</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" onclick="showSection('support')" class="nav-link">
+                            <i class="fas fa-headset"></i>
+                            <span>Soporte 24/7</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" onclick="showSection('templates')" class="nav-link">
+                            <i class="fas fa-file-contract"></i>
+                            <span>Plantillas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" onclick="showSection('news')" class="nav-link">
+                            <i class="fas fa-newspaper"></i>
+                            <span>Noticias Legales</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="content-section active">
+                <div class="section-header">
+                    <h1>Dashboard</h1>
+                    <p>Resumen general de sus servicios legales</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon bg-success">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>5</h3>
+                            <p>Casos Activos</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon bg-info">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>2</h3>
+                            <p>Próximas Citas</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon bg-warning">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>12</h3>
+                            <p>Documentos</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon bg-danger">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>3</h3>
+                            <p>Pendientes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Casos Recientes</h3>
+                            <a href="#" onclick="showSection('history')" class="btn-link">Ver todos</a>
+                        </div>
+                        <div class="case-list">
+                            <div class="case-item">
+                                <div class="case-info">
+                                    <h4>Divorcio Consensual</h4>
+                                    <p>Caso #2024-001</p>
+                                </div>
+                                <div class="case-status">
+                                    <span class="status-badge status-progress">En proceso</span>
+                                </div>
+                            </div>
+                            <div class="case-item">
+                                <div class="case-info">
+                                    <h4>Constitución de Empresa</h4>
+                                    <p>Caso #2024-002</p>
+                                </div>
+                                <div class="case-status">
+                                    <span class="status-badge status-completed">Completado</span>
+                                </div>
+                            </div>
+                            <div class="case-item">
+                                <div class="case-info">
+                                    <h4>Revisión de Contrato</h4>
+                                    <p>Caso #2024-003</p>
+                                </div>
+                                <div class="case-status">
+                                    <span class="status-badge status-pending">Pendiente</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Próximas Citas</h3>
+                            <a href="#" onclick="showSection('appointments')" class="btn-link">Gestionar</a>
+                        </div>
+                        <div class="appointment-list">
+                            <div class="appointment-item">
+                                <div class="appointment-date">
+                                    <span class="day">24</span>
+                                    <span class="month">Jul</span>
+                                </div>
+                                <div class="appointment-info">
+                                    <h4>Consulta Legal</h4>
+                                    <p>Dr. Carlos Mendoza - 10:00 AM</p>
+                                </div>
+                            </div>
+                            <div class="appointment-item">
+                                <div class="appointment-date">
+                                    <span class="day">26</span>
+                                    <span class="month">Jul</span>
+                                </div>
+                                <div class="appointment-info">
+                                    <h4>Firma de Documentos</h4>
+                                    <p>Dra. Ana Rodríguez - 2:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <h3>Acciones Rápidas</h3>
+                    <div class="quick-actions-grid">
+                        <button class="quick-action-btn" onclick="showSection('appointments')">
+                            <i class="fas fa-calendar-plus"></i>
+                            <span>Agendar Cita</span>
+                        </button>
+                        <button class="quick-action-btn" onclick="showSection('consultations')">
+                            <i class="fas fa-question-circle"></i>
+                            <span>Nueva Consulta</span>
+                        </button>
+                        <button class="quick-action-btn" onclick="showSection('documents')">
+                            <i class="fas fa-upload"></i>
+                            <span>Subir Documento</span>
+                        </button>
+                        <button class="quick-action-btn" onclick="showSection('support')">
+                            <i class="fas fa-headset"></i>
+                            <span>Contactar Soporte</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Appointments Section -->
+            <section id="appointments" class="content-section">
+                <div class="section-header">
+                    <h1>Gestión de Citas</h1>
+                    <button class="btn btn-primary" onclick="openModal('newAppointmentModal')">
+                        <i class="fas fa-plus"></i> Nueva Cita
+                    </button>
+                </div>
+
+                <div class="appointments-container">
+                    <div class="calendar-view">
+                        <div class="calendar-header">
+                            <button class="btn-calendar-nav" id="prevMonth">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <h3 id="currentMonth">Julio 2025</h3>
+                            <button class="btn-calendar-nav" id="nextMonth">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                        <div class="calendar-grid" id="calendarGrid">
+                            <!-- Calendar will be generated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="appointments-list">
+                        <h3>Próximas Citas</h3>
+                        <div class="appointment-card">
+                            <div class="appointment-header">
+                                <div class="appointment-date-time">
+                                    <span class="date">24 Jul 2025</span>
+                                    <span class="time">10:00 AM</span>
+                                </div>
+                                <div class="appointment-actions">
+                                    <button class="btn-icon btn-edit" title="Editar">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon btn-delete" title="Cancelar">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="appointment-details">
+                                <h4>Consulta Legal - Caso #2024-001</h4>
+                                <p><i class="fas fa-user-md"></i> Dr. Carlos Mendoza</p>
+                                <p><i class="fas fa-map-marker-alt"></i> Oficina Principal - Sala 301</p>
+                                <p><i class="fas fa-info-circle"></i> Revisión de documentos de divorcio</p>
+                            </div>
+                        </div>
+
+                        <div class="appointment-card">
+                            <div class="appointment-header">
+                                <div class="appointment-date-time">
+                                    <span class="date">26 Jul 2025</span>
+                                    <span class="time">2:00 PM</span>
+                                </div>
+                                <div class="appointment-actions">
+                                    <button class="btn-icon btn-edit" title="Editar">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon btn-delete" title="Cancelar">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="appointment-details">
+                                <h4>Firma de Documentos</h4>
+                                <p><i class="fas fa-user-md"></i> Dra. Ana Rodríguez</p>
+                                <p><i class="fas fa-map-marker-alt"></i> Oficina Principal - Sala 205</p>
+                                <p><i class="fas fa-info-circle"></i> Firma de contrato de constitución de empresa</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- History Section -->
+            <section id="history" class="content-section">
+                <div class="section-header">
+                    <h1>Historial de Servicios</h1>
+                    <div class="filter-controls">
+                        <select class="form-select">
+                            <option>Todos los casos</option>
+                            <option>Activos</option>
+                            <option>Completados</option>
+                            <option>Pendientes</option>
+                        </select>
+                        <input type="text" class="form-input" placeholder="Buscar caso...">
+                    </div>
+                </div>
+
+                <div class="history-grid">
+                    <div class="case-card">
+                        <div class="case-header">
+                            <div class="case-title">
+                                <h3>Divorcio Consensual</h3>
+                                <span class="case-number">Caso #2024-001</span>
+                            </div>
+                            <span class="status-badge status-progress">En proceso</span>
+                        </div>
+                        <div class="case-details">
+                            <p><i class="fas fa-calendar"></i> Iniciado: 15 Jun 2025</p>
+                            <p><i class="fas fa-user-tie"></i> Abogado: Dr. Carlos Mendoza</p>
+                            <p><i class="fas fa-clock"></i> Última actualización: Hace 2 días</p>
+                        </div>
+                        <div class="case-actions">
+                            <button class="btn btn-outline">Ver Detalles</button>
+                            <button class="btn btn-outline">Documentos (5)</button>
+                            <button class="btn btn-primary">Contactar Abogado</button>
+                        </div>
+                    </div>
+
+                    <div class="case-card">
+                        <div class="case-header">
+                            <div class="case-title">
+                                <h3>Constitución de Empresa</h3>
+                                <span class="case-number">Caso #2024-002</span>
+                            </div>
+                            <span class="status-badge status-completed">Completado</span>
+                        </div>
+                        <div class="case-details">
+                            <p><i class="fas fa-calendar"></i> Iniciado: 1 May 2025</p>
+                            <p><i class="fas fa-user-tie"></i> Abogado: Dra. Ana Rodríguez</p>
+                            <p><i class="fas fa-check-circle"></i> Completado: 20 Jun 2025</p>
+                        </div>
+                        <div class="case-actions">
+                            <button class="btn btn-outline">Ver Detalles</button>
+                            <button class="btn btn-outline">Documentos (8)</button>
+                            <button class="btn btn-success">Descargar Certificados</button>
+                        </div>
+                    </div>
+
+                    <div class="case-card">
+                        <div class="case-header">
+                            <div class="case-title">
+                                <h3>Revisión de Contrato</h3>
+                                <span class="case-number">Caso #2024-003</span>
+                            </div>
+                            <span class="status-badge status-pending">Pendiente</span>
+                        </div>
+                        <div class="case-details">
+                            <p><i class="fas fa-calendar"></i> Iniciado: 10 Jul 2025</p>
+                            <p><i class="fas fa-user-tie"></i> Abogado: Dr. Luis Martínez</p>
+                            <p><i class="fas fa-exclamation-triangle"></i> Requiere documentación adicional</p>
+                        </div>
+                        <div class="case-actions">
+                            <button class="btn btn-outline">Ver Detalles</button>
+                            <button class="btn btn-outline">Documentos (2)</button>
+                            <button class="btn btn-warning">Enviar Documentos</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Consultations Section -->
+            <section id="consultations" class="content-section">
+                <div class="section-header">
+                    <h1>Consultas Jurídicas</h1>
+                    <button class="btn btn-primary" onclick="openModal('newConsultationModal')">
+                        <i class="fas fa-plus"></i> Nueva Consulta
+                    </button>
+                </div>
+
+                <div class="consultations-container">
+                    <div class="consultation-chat">
+                        <div class="chat-header">
+                            <div class="chat-user">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23A0665C'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Abogado" class="chat-avatar">
+                                <div>
+                                    <h4>Dr. Carlos Mendoza</h4>
+                                    <span class="online-status">En línea</span>
+                                </div>
+                            </div>
+                            <button class="btn-icon">
+                                <i class="fas fa-video"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="message received">
+                                <div class="message-avatar">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23A0665C'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Abogado">
+                                </div>
+                                <div class="message-content">
+                                    <p>Buenos días, María. He revisado la documentación que me envió sobre su caso de divorcio. Todo está en orden y podemos proceder con la siguiente fase.</p>
+                                    <span class="message-time">10:30 AM</span>
+                                </div>
+                            </div>
+                            
+                            <div class="message sent">
+                                <div class="message-content">
+                                    <p>Perfecto, Dr. Mendoza. ¿Cuáles serían los siguientes pasos a seguir?</p>
+                                    <span class="message-time">10:32 AM</span>
+                                </div>
+                            </div>
+                            
+                            <div class="message received">
+                                <div class="message-avatar">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23A0665C'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Abogado">
+                                </div>
+                                <div class="message-content">
+                                    <p>Necesitaremos programar una cita para la firma de los documentos finales. Le estaré enviando las fechas disponibles esta tarde.</p>
+                                    <span class="message-time">10:35 AM</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-input">
+                            <input type="text" placeholder="Escriba su mensaje..." id="messageInput">
+                            <button class="btn-icon" onclick="sendMessage()">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="consultation-sidebar">
+                        <div class="consultation-info">
+                            <h3>Información de la Consulta</h3>
+                            <div class="info-item">
+                                <strong>Caso:</strong> Divorcio Consensual #2024-001
+                            </div>
+                            <div class="info-item">
+                                <strong>Abogado:</strong> Dr. Carlos Mendoza
+                            </div>
+                            <div class="info-item">
+                                <strong>Estado:</strong> <span class="status-badge status-progress">Activa</span>
+                            </div>
+                            <div class="info-item">
+                                <strong>Próxima cita:</strong> 24 Jul 2025, 10:00 AM
+                            </div>
+                        </div>
+
+                        <div class="recent-consultations">
+                            <h3>Consultas Recientes</h3>
+                            <div class="consultation-item">
+                                <h4>Constitución de Empresa</h4>
+                                <p>Dra. Ana Rodríguez</p>
+                                <span class="consultation-date">Completada - 20 Jun</span>
+                            </div>
+                            <div class="consultation-item">
+                                <h4>Revisión de Contrato</h4>
+                                <p>Dr. Luis Martínez</p>
+                                <span class="consultation-date">Pendiente - 10 Jul</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Documents Section -->
+            <section id="documents" class="content-section">
+                <div class="section-header">
+                    <h1>Gestión de Documentos</h1>
+                    <button class="btn btn-primary" onclick="openModal('uploadDocumentModal')">
+                        <i class="fas fa-upload"></i> Subir Documento
+                    </button>
+                </div>
+
+                <div class="documents-container">
+                    <div class="documents-filters">
+                        <div class="filter-group">
+                            <label>Categoría</label>
+                            <select class="form-select">
+                                <option>Todos los documentos</option>
+                                <option>Contratos</option>
+                                <option>Escrituras</option>
+                                <option>Certificados</option>
+                                <option>Facturas</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Caso</label>
+                            <select class="form-select">
+                                <option>Todos los casos</option>
+                                <option>Divorcio Consensual #2024-001</option>
+                                <option>Constitución de Empresa #2024-002</option>
+                                <option>Revisión de Contrato #2024-003</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Buscar</label>
+                            <input type="text" class="form-input" placeholder="Nombre del documento...">
+                        </div>
+                    </div>
+
+                    <div class="documents-grid">
+                        <div class="document-card">
+                            <div class="document-icon">
+                                <i class="fas fa-file-word text-primary"></i>
+                            </div>
+                            <div class="document-info">
+                                <h4>Contrato de Arrendamiento</h4>
+                                <p>Caso #2024-003</p>
+                                <span class="document-size">1.2 MB</span>
+                                <span class="document-date">Subido: 10 Jul 2025</span>
+                            </div>
+                            <div class="document-actions">
+                                <button class="btn-icon" title="Descargar">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button class="btn-icon" title="Ver">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-icon pending" title="Pendiente de revisión">
+                                    <i class="fas fa-clock"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="document-card">
+                            <div class="document-icon">
+                                <i class="fas fa-file-excel text-success"></i>
+                            </div>
+                            <div class="document-info">
+                                <h4>Inventario de Bienes</h4>
+                                <p>Caso #2024-001</p>
+                                <span class="document-size">856 KB</span>
+                                <span class="document-date">Subido: 18 Jun 2025</span>
+                            </div>
+                            <div class="document-actions">
+                                <button class="btn-icon" title="Descargar">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button class="btn-icon" title="Ver">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-icon" title="Compartir">
+                                    <i class="fas fa-share-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Billing Section -->
+            <section id="billing" class="content-section">
+                <div class="section-header">
+                    <h1>Pagos y Facturación</h1>
+                    <button class="btn btn-primary" onclick="openModal('paymentModal')">
+                        <i class="fas fa-credit-card"></i> Realizar Pago
+                    </button>
+                </div>
+
+                <div class="billing-overview">
+                    <div class="billing-card">
+                        <div class="billing-icon bg-success">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="billing-info">
+                            <h3>$2,450.00</h3>
+                            <p>Total Pagado</p>
+                        </div>
+                    </div>
+                    <div class="billing-card">
+                        <div class="billing-icon bg-warning">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="billing-info">
+                            <h3>$750.00</h3>
+                            <p>Pendiente</p>
+                        </div>
+                    </div>
+                    <div class="billing-card">
+                        <div class="billing-icon bg-info">
+                            <i class="fas fa-receipt"></i>
+                        </div>
+                        <div class="billing-info">
+                            <h3>8</h3>
+                            <p>Facturas</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="billing-content">
+                    <div class="billing-history">
+                        <h3>Historial de Pagos</h3>
+                        <div class="payment-list">
+                            <div class="payment-item">
+                                <div class="payment-info">
+                                    <h4>Factura #FAC-2024-015</h4>
+                                    <p>Caso: Divorcio Consensual #2024-001</p>
+                                    <span class="payment-date">15 Jul 2025</span>
+                                </div>
+                                <div class="payment-amount">
+                                    <span class="amount">$850.00</span>
+                                    <span class="status-badge status-pending">Pendiente</span>
+                                </div>
+                                <div class="payment-actions">
+                                    <button class="btn btn-sm btn-primary">Pagar</button>
+                                    <button class="btn btn-sm btn-outline">Descargar</button>
+                                </div>
+                            </div>
+
+                            <div class="payment-item">
+                                <div class="payment-info">
+                                    <h4>Factura #FAC-2024-014</h4>
+                                    <p>Caso: Constitución de Empresa #2024-002</p>
+                                    <span class="payment-date">20 Jun 2025</span>
+                                </div>
+                                <div class="payment-amount">
+                                    <span class="amount">$1,200.00</span>
+                                    <span class="status-badge status-completed">Pagada</span>
+                                </div>
+                                <div class="payment-actions">
+                                    <button class="btn btn-sm btn-outline">Descargar</button>
+                                    <button class="btn btn-sm btn-outline">Ver Recibo</button>
+                                </div>
+                            </div>
+
+                            <div class="payment-item">
+                                <div class="payment-info">
+                                    <h4>Factura #FAC-2024-013</h4>
+                                    <p>Caso: Consulta Legal General</p>
+                                    <span class="payment-date">10 Jun 2025</span>
+                                </div>
+                                <div class="payment-amount">
+                                    <span class="amount">$300.00</span>
+                                    <span class="status-badge status-completed">Pagada</span>
+                                </div>
+                                <div class="payment-actions">
+                                    <button class="btn btn-sm btn-outline">Descargar</button>
+                                    <button class="btn btn-sm btn-outline">Ver Recibo</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="payment-methods">
+                        <h3>Métodos de Pago</h3>
+                        <div class="payment-method-card">
+                            <div class="card-info">
+                                <i class="fab fa-cc-visa"></i>
+                                <div>
+                                    <h4>Visa **** 4532</h4>
+                                    <p>Vence: 12/26</p>
+                                </div>
+                            </div>
+                            <button class="btn-icon">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                        <button class="btn btn-outline add-payment-method">
+                            <i class="fas fa-plus"></i> Agregar Método de Pago
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Support Section -->
+            <section id="support" class="content-section">
+                <div class="section-header">
+                    <h1>Soporte Legal 24/7</h1>
+                    <button class="btn btn-primary" onclick="openModal('supportTicketModal')">
+                        <i class="fas fa-ticket-alt"></i> Nuevo Ticket
+                    </button>
+                </div>
+
+                <div class="support-container">
+                    <div class="support-options">
+                        <div class="support-option">
+                            <div class="support-icon bg-primary">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <h3>Chat en Vivo</h3>
+                            <p>Conecte instantáneamente con nuestro equipo de soporte</p>
+                            <button class="btn btn-primary">Iniciar Chat</button>
+                        </div>
+                        <div class="support-option">
+                            <div class="support-icon bg-success">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <h3>Llamada Telefónica</h3>
+                            <p>Hable directamente con un abogado especializado</p>
+                            <button class="btn btn-success">Llamar Ahora</button>
+                        </div>
+                        <div class="support-option">
+                            <div class="support-icon bg-info">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h3>Email</h3>
+                            <p>Envíe su consulta y reciba respuesta en 24 horas</p>
+                            <button class="btn btn-info">Enviar Email</button>
+                        </div>
+                    </div>
+
+                    <div class="support-tickets">
+                        <h3>Mis Tickets de Soporte</h3>
+                        <div class="ticket-list">
+                            <div class="ticket-item">
+                                <div class="ticket-header">
+                                    <div class="ticket-info">
+                                        <h4>Consulta sobre documentación adicional</h4>
+                                        <span class="ticket-id">#SUP-2024-089</span>
+                                    </div>
+                                    <span class="status-badge status-progress">En proceso</span>
+                                </div>
+                                <div class="ticket-details">
+                                    <p>Necesito información sobre qué documentos adicionales requiere mi caso de divorcio...</p>
+                                    <div class="ticket-meta">
+                                        <span><i class="fas fa-calendar"></i> Creado: 22 Jul 2025</span>
+                                        <span><i class="fas fa-user"></i> Asignado a: Dr. Carlos Mendoza</span>
+                                        <span><i class="fas fa-clock"></i> Última respuesta: Hace 2 horas</span>
+                                    </div>
+                                </div>
+                                <div class="ticket-actions">
+                                    <button class="btn btn-outline">Ver Conversación</button>
+                                    <button class="btn btn-primary">Responder</button>
+                                </div>
+                            </div>
+
+                            <div class="ticket-item">
+                                <div class="ticket-header">
+                                    <div class="ticket-info">
+                                        <h4>Problema con la plataforma de pagos</h4>
+                                        <span class="ticket-id">#SUP-2024-087</span>
+                                    </div>
+                                    <span class="status-badge status-completed">Resuelto</span>
+                                </div>
+                                <div class="ticket-details">
+                                    <p>No puedo realizar el pago de mi factura pendiente desde la plataforma...</p>
+                                    <div class="ticket-meta">
+                                        <span><i class="fas fa-calendar"></i> Creado: 20 Jul 2025</span>
+                                        <span><i class="fas fa-user"></i> Resuelto por: Soporte Técnico</span>
+                                        <span><i class="fas fa-check-circle"></i> Cerrado: 21 Jul 2025</span>
+                                    </div>
+                                </div>
+                                <div class="ticket-actions">
+                                    <button class="btn btn-outline">Ver Conversación</button>
+                                    <button class="btn btn-outline">Calificar Servicio</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-section">
+                        <h3>Preguntas Frecuentes</h3>
+                        <div class="faq-list">
+                            <div class="faq-item">
+                                <button class="faq-question" onclick="toggleFaq(this)">
+                                    <span>¿Cómo puedo agendar una cita con mi abogado?</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <div class="faq-answer">
+                                    <p>Puede agendar una cita desde la sección "Citas" en su panel de usuario, seleccionando la fecha y hora disponible que mejor se ajuste a su horario.</p>
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <button class="faq-question" onclick="toggleFaq(this)">
+                                    <span>¿Cómo subo documentos a mi caso?</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <div class="faq-answer">
+                                    <p>Diríjase a la sección "Documentos" y haga clic en "Subir Documento". Seleccione el archivo y asígnelo al caso correspondiente.</p>
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <button class="faq-question" onclick="toggleFaq(this)">
+                                    <span>¿Cómo realizo un pago?</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <div class="faq-answer">
+                                    <p>En la sección "Facturación" encontrará todas sus facturas pendientes. Haga clic en "Pagar" junto a la factura que desea saldar.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Templates Section -->
+            <section id="templates" class="content-section">
+                <div class="section-header">
+                    <h1>Documentación Legal Personalizada</h1>
+                    <div class="template-categories">
+                        <button class="category-btn active" onclick="filterTemplates('all')">Todos</button>
+                        <button class="category-btn" onclick="filterTemplates('contracts')">Contratos</button>
+                        <button class="category-btn" onclick="filterTemplates('letters')">Cartas</button>
+                        <button class="category-btn" onclick="filterTemplates('forms')">Formularios</button>
+                    </div>
+                </div>
+
+                <div class="templates-grid">
+                    <div class="template-card" data-category="contracts">
+                        <div class="template-icon">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <div class="template-info">
+                            <h3>Contrato de Arrendamiento</h3>
+                            <p>Plantilla personalizable para contratos de arrendamiento residencial y comercial</p>
+                            <div class="template-tags">
+                                <span class="tag">Inmobiliario</span>
+                                <span class="tag">Contratos</span>
+                            </div>
+                        </div>
+                        <div class="template-actions">
+                            <button class="btn btn-primary">Generar</button>
+                            <button class="btn btn-outline">Vista Previa</button>
+                        </div>
+                    </div>
+
+                    <div class="template-card" data-category="letters">
+                        <div class="template-icon">
+                            <i class="fas fa-envelope-open-text"></i>
+                        </div>
+                        <div class="template-info">
+                            <h3>Carta de Renuncia</h3>
+                            <p>Formato profesional para cartas de renuncia laboral</p>
+                            <div class="template-tags">
+                                <span class="tag">Laboral</span>
+                                <span class="tag">Cartas</span>
+                            </div>
+                        </div>
+                        <div class="template-actions">
+                            <button class="btn btn-primary">Generar</button>
+                            <button class="btn btn-outline">Vista Previa</button>
+                        </div>
+                    </div>
+
+                    <div class="template-card" data-category="forms">
+                        <div class="template-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <div class="template-info">
+                            <h3>Poder Notarial</h3>
+                            <p>Formulario para otorgamiento de poderes notariales generales y especiales</p>
+                            <div class="template-tags">
+                                <span class="tag">Notarial</span>
+                                <span class="tag">Formularios</span>
+                            </div>
+                        </div>
+                        <div class="template-actions">
+                            <button class="btn btn-primary">Generar</button>
+                            <button class="btn btn-outline">Vista Previa</button>
+                        </div>
+                    </div>
+
+                    <div class="template-card" data-category="contracts">
+                        <div class="template-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="template-info">
+                            <h3>Contrato de Prestación de Servicios</h3>
+                            <p>Plantilla para contratos de servicios profesionales</p>
+                            <div class="template-tags">
+                                <span class="tag">Servicios</span>
+                                <span class="tag">Contratos</span>
+                            </div>
+                        </div>
+                        <div class="template-actions">
+                            <button class="btn btn-primary">Generar</button>
+                            <button class="btn btn-outline">Vista Previa</button>
+                        </div>
+                    </div>
+
+                    <div class="template-card" data-category="letters">
+                        <div class="template-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="template-info">
+                            <h3>Carta de Requerimiento</h3>
+                            <p>Formato para cartas de requerimiento de pago y cumplimiento</p>
+                            <div class="template-tags">
+                                <span class="tag">Cobranza</span>
+                                <span class="tag">Cartas</span>
+                            </div>
+                        </div>
+                        <div class="template-actions">
+                            <button class="btn btn-primary">Generar</button>
+                            <button class="btn btn-outline">Vista Previa</button>
+                        </div>
+                    </div>
+
+                    <div class="template-card" data-category="forms">
+                        <div class="template-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="template-info">
+                            <h3>Estatutos de Constitución</h3>
+                            <p>Formulario para constitución de sociedades comerciales</p>
+                            <div class="template-tags">
+                                <span class="tag">Societario</span>
+                                <span class="tag">Formularios</span>
+                            </div>
+                        </div>
+                        <div class="template-actions">
+                            <button class="btn btn-primary">Generar</button>
+                            <button class="btn btn-outline">Vista Previa</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- News Section -->
+            <section id="news" class="content-section">
+                <div class="section-header">
+                    <h1>Noticias y Alertas Legales</h1>
+                    <div class="news-filters">
+                        <button class="filter-btn active" onclick="filterNews('all')">Todas</button>
+                        <button class="filter-btn" onclick="filterNews('alerts')">Alertas</button>
+                        <button class="filter-btn" onclick="filterNews('news')">Noticias</button>
+                        <button class="filter-btn" onclick="filterNews('updates')">Actualizaciones</button>
+                    </div>
+                </div>
+
+                <div class="news-container">
+                    <div class="news-alerts">
+                        <div class="alert-card priority-high">
+                            <div class="alert-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="alert-content">
+                                <h3>Nueva Ley de Protección de Datos</h3>
+                                <p>Entra en vigencia el 1 de agosto de 2025. Revise cómo puede afectar sus contratos comerciales.</p>
+                                <span class="alert-date">Publicado: 23 Jul 2025</span>
+                            </div>
+                        </div>
+
+                        <div class="alert-card priority-medium">
+                            <div class="alert-icon">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div class="alert-content">
+                                <h3>Cambios en Procedimientos Notariales</h3>
+                                <p>Nuevos requisitos para la firma de escrituras públicas a partir del próximo mes.</p>
+                                <span class="alert-date">Publicado: 22 Jul 2025</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="news-list">
+                        <article class="news-article">
+                            <div class="news-image">
+                                <i class="fas fa-gavel"></i>
+                            </div>
+                            <div class="news-content">
+                                <div class="news-category">Derecho Laboral</div>
+                                <h3>Nuevas Regulaciones sobre Teletrabajo</h3>
+                                <p>El Congreso aprobó modificaciones importantes a la legislación laboral que afectan los contratos de teletrabajo y trabajo remoto...</p>
+                                <div class="news-meta">
+                                    <span><i class="fas fa-calendar"></i> 21 Jul 2025</span>
+                                    <span><i class="fas fa-user"></i> Equipo Legal</span>
+                                    <span><i class="fas fa-clock"></i> 3 min lectura</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="news-article">
+                            <div class="news-image">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div class="news-content">
+                                <div class="news-category">Derecho Inmobiliario</div>
+                                <h3>Actualización en Procesos de Compraventa</h3>
+                                <p>Se establecen nuevos procedimientos para la verificación de títulos de propiedad en transacciones inmobiliarias...</p>
+                                <div class="news-meta">
+                                    <span><i class="fas fa-calendar"></i> 20 Jul 2025</span>
+                                    <span><i class="fas fa-user"></i> Dra. Ana Rodríguez</span>
+                                    <span><i class="fas fa-clock"></i> 5 min lectura</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="news-article">
+                            <div class="news-image">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="news-content">
+                                <div class="news-category">Derecho Tributario</div>
+                                <h3>Reforma Tributaria 2025</h3>
+                                <p>Análisis completo de los cambios fiscales que entrarán en vigencia y su impacto en personas naturales y jurídicas...</p>
+                                <div class="news-meta">
+                                    <span><i class="fas fa-calendar"></i> 19 Jul 2025</span>
+                                    <span><i class="fas fa-user"></i> Dr. Luis Martínez</span>
+                                    <span><i class="fas fa-clock"></i> 7 min lectura</span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profile Section -->
+            <section id="profile" class="content-section">
+                <div class="section-header">
+                    <h1>Mi Perfil</h1>
+                    <button class="btn btn-primary" onclick="toggleEditProfile()">
+                        <i class="fas fa-edit"></i> Editar Perfil
+                    </button>
+                </div>
+
+                <div class="profile-container">
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <div class="profile-avatar">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23A0665C'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Perfil">
+                                <button class="change-avatar-btn">
+                                    <i class="fas fa-camera"></i>
+                                </button>
+                            </div>
+                            <div class="profile-info">
+                                <h2>María González</h2>
+                                <p>Cliente Premium</p>
+                                <span class="member-since">Miembro desde: Enero 2024</span>
+                            </div>
+                        </div>
+
+                        <div class="profile-details" id="profileDetails">
+                            <div class="detail-group">
+                                <label>Información Personal</label>
+                                <div class="detail-row">
+                                    <div class="detail-item">
+                                        <strong>Nombre Completo:</strong>
+                                        <span>María Fernanda González López</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <strong>Cédula:</strong>
+                                        <span>1.234.567.890</span>
+                                    </div>
+                                </div>
+                                <div class="detail-row">
+                                    <div class="detail-item">
+                                        <strong>Fecha de Nacimiento:</strong>
+                                        <span>15 de Marzo, 1985</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <strong>Estado Civil:</strong>
+                                        <span>Casada</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="detail-group">
+                                <label>Información de Contacto</label>
+                                <div class="detail-row">
+                                    <div class="detail-item">
+                                        <strong>Email:</strong>
+                                        <span>maria.gonzalez@email.com</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <strong>Teléfono:</strong>
+                                        <span>+57 300 123 4567</span>
+                                    </div>
+                                </div>
+                                <div class="detail-row">
+                                    <div class="detail-item">
+                                        <strong>Dirección:</strong>
+                                        <span>Calle 45 #12-34, Cartagena, Bolívar</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="detail-group">
+                                <label>Configuración de Seguridad</label>
+                                <div class="security-options">
+                                    <div class="security-item">
+                                        <div class="security-info">
+                                            <strong>Autenticación de Dos Factores</strong>
+                                            <p>Protege tu cuenta con verificación adicional</p>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" checked>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="security-item">
+                                        <div class="security-info">
+                                            <strong>Notificaciones por Email</strong>
+                                            <p>Recibe alertas sobre tu cuenta por correo</p>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" checked>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="security-item">
+                                        <div class="security-info">
+                                            <strong>Notificaciones Push</strong>
+                                            <p>Alertas instantáneas en tu dispositivo</p>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox">
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-key"></i> Cambiar Contraseña
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal-overlay" id="modalOverlay">
+        <!-- New Appointment Modal -->
+        <div class="modal" id="newAppointmentModal">
+            <div class="modal-header">
+                <h3>Agendar Nueva Cita</h3>
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="appointment-form">
+                    <div class="form-group">
+                        <label>Tipo de Cita</label>
+                        <select class="form-select">
+                            <option>Consulta Legal</option>
+                            <option>Firma de Documentos</option>
+                            <option>Revisión de Caso</option>
+                            <option>Asesoría Especializada</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Abogado</label>
+                        <select class="form-select">
+                            <option>Dr. Carlos Mendoza</option>
+                            <option>Dra. Ana Rodríguez</option>
+                            <option>Dr. Luis Martínez</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Fecha</label>
+                            <input type="date" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Hora</label>
+                            <select class="form-select">
+                                <option>9:00 AM</option>
+                                <option>10:00 AM</option>
+                                <option>11:00 AM</option>
+                                <option>2:00 PM</option>
+                                <option>3:00 PM</option>
+                                <option>4:00 PM</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Observaciones</label>
+                        <textarea class="form-textarea" placeholder="Describa brevemente el motivo de la cita..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal()">Cancelar</button>
+                <button class="btn btn-primary">Agendar Cita</button>
+            </div>
+        </div>
+
+        <!-- New Consultation Modal -->
+        <div class="modal" id="newConsultationModal">
+            <div class="modal-header">
+                <h3>Nueva Consulta Jurídica</h3>
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="consultation-form">
+                    <div class="form-group">
+                        <label>Área Legal</label>
+                        <select class="form-select">
+                            <option>Derecho Civil</option>
+                            <option>Derecho Laboral</option>
+                            <option>Derecho Comercial</option>
+                            <option>Derecho de Familia</option>
+                            <option>Derecho Inmobiliario</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Prioridad</label>
+                        <select class="form-select">
+                            <option>Normal</option>
+                            <option>Urgente</option>
+                            <option>Muy Urgente</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Asunto</label>
+                        <input type="text" class="form-input" placeholder="Título breve de su consulta">
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción Detallada</label>
+                        <textarea class="form-textarea" rows="6" placeholder="Describa detalladamente su situación legal..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Documentos Adjuntos</label>
+                        <div class="file-upload-area">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Arrastra archivos aquí o haz clic para seleccionar</p>
+                            <input type="file" multiple accept=".pdf,.doc,.docx,.jpg,.png">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal()">Cancelar</button>
+                <button class="btn btn-primary">Enviar Consulta</button>
+            </div>
+        </div>
+
+        <!-- Upload Document Modal -->
+        <div class="modal" id="uploadDocumentModal">
+            <div class="modal-header">
+                <h3>Subir Documento</h3>
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="upload-form">
+                    <div class="form-group">
+                        <label>Caso Relacionado</label>
+                        <select class="form-select">
+                            <option>Divorcio Consensual #2024-001</option>
+                            <option>Constitución de Empresa #2024-002</option>
+                            <option>Revisión de Contrato #2024-003</option>
+                            <option>Nuevo Documento General</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Categoría</label>
+                        <select class="form-select">
+                            <option>Contrato</option>
+                            <option>Escritura</option>
+                            <option>Certificado</option>
+                            <option>Factura</option>
+                            <option>Identificación</option>
+                            <option>Otro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre del Documento</label>
+                        <input type="text" class="form-input" placeholder="Nombre descriptivo del documento">
+                    </div>
+                    <div class="form-group">
+                        <label>Archivo</label>
+                        <div class="file-upload-area large">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Arrastra tu archivo aquí o haz clic para seleccionar</p>
+                            <span>Formatos permitidos: PDF, DOC, DOCX, JPG, PNG (Máx. 10MB)</span>
+                            <input type="file" accept=".pdf,.doc,.docx,.jpg,.png">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción (Opcional)</label>
+                        <textarea class="form-textarea" placeholder="Descripción adicional del documento..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal()">Cancelar</button>
+                <button class="btn btn-primary">Subir Documento</button>
+            </div>
+        </div>
+
+        <!-- Payment Modal -->
+        <div class="modal" id="paymentModal">
+            <div class="modal-header">
+                <h3>Realizar Pago</h3>
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="payment-form">
+                    <div class="payment-summary">
+                        <h4>Resumen del Pago</h4>
+                        <div class="summary-item">
+                            <span>Factura #FAC-2024-015</span>
+                            <span>$850.00</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Impuestos</span>
+                            <span>$136.00</span>
+                        </div>
+                        <div class="summary-total">
+                            <span>Total a Pagar</span>
+                            <span>$986.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-methods-selection">
+                        <h4>Método de Pago</h4>
+                        <div class="payment-method-options">
+                            <label class="payment-option">
+                                <input type="radio" name="paymentMethod" value="card" checked>
+                                <div class="option-content">
+                                    <i class="fas fa-credit-card"></i>
+                                    <span>Tarjeta de Crédito/Débito</span>
+                                </div>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="paymentMethod" value="bank">
+                                <div class="option-content">
+                                    <i class="fas fa-university"></i>
+                                    <span>Transferencia Bancaria</span>
+                                </div>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="paymentMethod" value="pse">
+                                <div class="option-content">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <span>PSE</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="card-form" id="cardForm">
+                        <div class="form-group">
+                            <label>Número de Tarjeta</label>
+                            <input type="text" class="form-input" placeholder="1234 5678 9012 3456">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Vencimiento</label>
+                                <input type="text" class="form-input" placeholder="MM/AA">
+                            </div>
+                            <div class="form-group">
+                                <label>CVV</label>
+                                <input type="text" class="form-input" placeholder="123">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Nombre en la Tarjeta</label>
+                            <input type="text" class="form-input" placeholder="Nombre completo">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal()">Cancelar</button>
+                <button class="btn btn-success">
+                    <i class="fas fa-lock"></i> Pagar $986.00
+                </button>
+            </div>
+        </div>
+
+        <!-- Support Ticket Modal -->
+        <div class="modal" id="supportTicketModal">
+            <div class="modal-header">
+                <h3>Nuevo Ticket de Soporte</h3>
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="support-form">
+                    <div class="form-group">
+                        <label>Tipo de Soporte</label>
+                        <select class="form-select">
+                            <option>Consulta General</option>
+                            <option>Problema Técnico</option>
+                            <option>Problema de Facturación</option>
+                            <option>Problema con Documentos</option>
+                            <option>Solicitud de Cambio</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Prioridad</label>
+                        <select class="form-select">
+                            <option>Baja</option>
+                            <option>Media</option>
+                            <option>Alta</option>
+                            <option>Crítica</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Asunto</label>
+                        <input type="text" class="form-input" placeholder="Descripción breve del problema">
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción Detallada</label>
+                        <textarea class="form-textarea" rows="6" placeholder="Describa detalladamente su consulta o problema..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Archivos Adjuntos (Opcional)</label>
+                        <div class="file-upload-area">
+                            <i class="fas fa-paperclip"></i>
+                            <p>Adjuntar capturas de pantalla o documentos relevantes</p>
+                            <input type="file" multiple accept=".pdf,.doc,.docx,.jpg,.png">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal()">Cancelar</button>
+                <button class="btn btn-primary">Crear Ticket</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
